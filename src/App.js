@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './component/Login';
-import Home from './pages/Home';
+import Homestudent from './pages/Homestudent';
 import ForgotPassword from './component/ForgotPassword';
 import ResetPassword from './component/ResetPassword';
 import Student from './pages/Student';
@@ -13,11 +13,10 @@ const App = () => (
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Thêm route cho ForgotPassword */}
       < Route path="/reset-password" element={<ResetPassword />} />
-      <Route element={<Home/>}>
-         
+      <Route element={<Homestudent/>}>        
           <Route path="/student" element={<Student/>}/>
         </Route>
-        <Route element={<Hometeacher/>}>
+      <Route element={<Hometeacher/>}>
          <Route path="/teacher" element={<Teacher />} />
         </Route>
       </Routes>

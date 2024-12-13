@@ -1,7 +1,7 @@
 import { EuiAvatar, EuiBadge, EuiButton, EuiButtonEmpty, EuiFlexGrid, EuiFlexGroup, EuiFlexItem, EuiFlyout, EuiFlyoutBody, EuiFlyoutFooter, EuiFlyoutHeader, EuiHeader, EuiHeaderAlert, EuiHeaderBreadcrumbs, EuiHeaderSection, EuiHeaderSectionItem, EuiHeaderSectionItemButton, EuiIcon, EuiImage, EuiKeyPadMenu, EuiKeyPadMenuItem, EuiLink, EuiPageHeader, EuiPageHeaderContent, EuiPopover, EuiPopoverTitle, EuiPortal, EuiText, EuiTitle } from '@elastic/eui'
 import React, { useState } from 'react'
 import logo from '../assets/logo.png'
-export default function Headers({clickSideBar}) {
+export default function Headerstudent({clickSideBarstudent}) {
     const [popoverUser,setPopoverUser]=useState(false)
     const [popoverApp,setPopoverApp]=useState(false)
     const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
@@ -147,7 +147,7 @@ export default function Headers({clickSideBar}) {
                 <EuiHeader style={{width:'100%'}}>
                     <EuiHeaderSection>
                         <EuiHeaderSectionItem>
-                            <EuiButtonEmpty onClick={clickSideBar} iconType="menu" color='text'/>
+                            <EuiButtonEmpty onClick={clickSideBarstudent} iconType="menu" color='text'/>
                             <EuiImage src={require('../assets/logo.png')} width="100px" height="25px" />
                             </EuiHeaderSectionItem>
                         <EuiHeaderSectionItem style={{padding:'10px'}}>
