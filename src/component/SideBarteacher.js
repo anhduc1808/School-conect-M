@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiIcon, EuiListGroup, EuiListGroupItem, EuiText, EuiFlexGroup, EuiFlexItem, EuiCollapsibleNavGroup } from '@elastic/eui';
 import { Link } from 'react-router-dom';  // Đảm bảo đã cài đặt react-router-dom
 
-export default function SideBar() {
+export default function SideBarteacher() {
   return (
     <>
       {/* Phần tiêu đề SCM */}
@@ -41,16 +41,14 @@ export default function SideBar() {
       >
         <EuiListGroup flush gutterSize="none">
           <EuiListGroupItem label={<><EuiIcon type="calendar" size="m" /> <Link to="/schedule">Thời khóa biểu</Link></>} />
-          <EuiListGroupItem label={<><EuiIcon type="users" size="m" /> <Link to="/my-classes">Lớp học của tôi</Link></>} />
-          <EuiListGroupItem label={<><EuiIcon type="reporter" size="m" /> <Link to="/contact-book">Sổ liên lạc điện tử</Link></>} />
-          <EuiListGroupItem label={<><EuiIcon type="training" size="m" /> <Link to="/student-records">Học bạ học sinh</Link></>} />
-          <EuiListGroupItem label={<><EuiIcon type="starEmpty" size="m" /> <Link to="/academic-results">Kết quả học tập</Link></>} />
+          <EuiListGroupItem label={<><EuiIcon type="users" size="m" /> <Link to="/my-classes">Lớp giảng dạy</Link></>} />
+          <EuiListGroupItem label={<><EuiIcon type="training" size="m" /> <Link to="/contact-book">Lớp chủ nhiệm</Link></>} />\
         </EuiListGroup>
       </EuiCollapsibleNavGroup>
 
       {/* Học phí */}
       <EuiListGroup gutterSize="none" style={{ padding: '4px 8px' }}>
-        <EuiListGroupItem label={<Link to="/tuition">Học phí</Link>} style={{ fontWeight: 'bold' }} />
+        <EuiListGroupItem label={<Link to="/tuition">Cài đặt</Link>} style={{ fontWeight: 'bold' }} />
       </EuiListGroup>
     </>
   );
