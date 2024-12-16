@@ -7,13 +7,13 @@ import {
     EuiPanel,
     EuiFlexGroup,
     EuiFlexItem,
-    EuiIcon,
-    EuiStat
+    EuiIcon
 } from '@elastic/eui';
 import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title, ChartData } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';  // Import plugin
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
 export default function TeacherDashboard() {
     // Dữ liệu Thời khóa biểu
@@ -48,44 +48,96 @@ export default function TeacherDashboard() {
 
     // Dữ liệu Lớp chủ nhiệm
     const className = '10A1';
-    const room = ' 101';
+    const room = ' D3-301';
     const totalStudents = 40;
-    const presentStudents = 38;
+    const presentStudents = 30;
     const totalAbsent = 10;
     const permittedAbsence = 5;  // Vắng mặt có phép
     const unpermittedAbsence = 5;  // Vắng mặt không phép
 
-    // Dữ liệu Điểm danh
-    const attendanceStats = {
-        present: presentStudents,
-        absent: totalAbsent,
-        permittedAbsence,
-        unpermittedAbsence
-    };
-
     // Chart data cho donut
-    const attendanceChartData = {
-        labels: ['Có mặt', 'Vắng mặt'],
-        datasets: [
-            {
-                data: [presentStudents, totalAbsent],
-                backgroundColor: ['#FF9900', '#EEEEEE'],
-                hoverBackgroundColor: ['#FF9900', '#EEEEEE']
+    // Chart data cho donut
+const attendanceChartData = {
+    labels: ['Có mặt', 'Vắng mặt'],
+    datasets: [
+        {
+            data: [presentStudents, totalAbsent],
+            backgroundColor: ['#FF9900', '#EEEEEE'],
+            hoverBackgroundColor: ['#FF9900', '#EEEEEE']
+        }
+    ]
+};
+
+// Chart options để chỉ hiển thị tỉ lệ phần trăm có mặt và đặt vào chính giữa vòng tròn
+const options = {
+    responsive: true,
+    plugins: {
+        datalabels: {
+            display: true,
+            color: '#000000', // Màu chữ chính
+            font: {
+                size: 20,  // Kích thước chữ
+                weight: 'bold'  // Đậm chữ
+            },
+            formatter: (value, context) => {
+                const total = presentStudents + totalAbsent;
+                const percentage = Math.round((value / total) * 100);
+
+                // Display percentage in center of donut
+                if (context.dataIndex === 0) {  // "Có mặt"
+                    return ` `; // Hiển thị tỉ lệ phần trăm cho "Có mặt"
+                }
+                return ` `; // Hiển thị tỉ lệ phần trăm cho "Vắng mặt"
+            },
+            anchor: 'center',  // Đặt vào giữa vòng tròn
+           
+            color: (context) => {
+                // Điều chỉnh màu sắc dựa trên phần tử
+                if (context.dataIndex === 0) {
+                    return '#FF9900';  // Màu cam cho "Có mặt"
+                }
+                return '#FFFFFF';  // Màu trắng cho "Vắng mặt"
             }
-        ]
+        }
+    },
+    cutout: '70%'  // Tạo hình donut (cắt giữa vòng tròn)
+};
+
+    
+
+    // Hàm để render chấm tròn theo trạng thái
+    const renderStatusCircle = (status) => {
+        let color;
+        if (status === 'Vắng mặt') {
+            color = 'red';  // Chấm tròn đỏ cho "Vắng mặt"
+        } else if (status === 'Có phép') {
+            color = 'yellow';  // Chấm tròn vàng cho "Có phép"
+        } else if (status === 'Không phép') {
+            color = 'gray';  // Chấm tròn xám cho "Không phép"
+        }
+        return (
+            <span style={{ 
+                display: 'inline-block', 
+                width: '10px', 
+                height: '10px', 
+                borderRadius: '50%', 
+                backgroundColor: color, 
+                marginRight: '5px' 
+            }} />
+        );
     };
 
     return (
-        <EuiPageTemplate>
+        <EuiPageTemplate style={{ width: '100%', maxWidth: '100vw' }}>
             {/* Header */}
             <EuiPageTemplate.Header 
                 paddingSize="m" 
-                pageTitle={<EuiText><h2>Bảng điều khiển giáo viên</h2></EuiText>} 
+                pageTitle={<EuiText><h2>Trang chủ</h2></EuiText>} 
             />
 
             {/* Thời khóa biểu */}
-            <EuiPageTemplate.Section color="plain">
-                <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" gutterSize="l">
+            <EuiPageTemplate.Section color="plain" style={{ width: '100%' }}>
+                <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" gutterSize="l" style={{ width: '100%' }}>
                     <EuiFlexItem grow={false}>
                         <EuiText>
                             <h3 style={{ fontWeight: 'bold', color: '#0070F3' }}>
@@ -100,10 +152,10 @@ export default function TeacherDashboard() {
             </EuiPageTemplate.Section>
 
             {/* Lớp chủ nhiệm và Sự kiện */}
-            <EuiPageTemplate.Section color="plain">
-                <EuiFlexGroup gutterSize="l" direction="row">
+            <EuiPageTemplate.Section color="plain" style={{ width: '100%' }}>
+                <EuiFlexGroup gutterSize="l" direction="row" style={{ width: '100%' }}>
                     {/* Panel Sự kiện */}
-                    <EuiFlexItem style={{ width: '1000px', height: '282px' }}>
+                    <EuiFlexItem style={{ flex: '0 0 70%', height: '300px', width: '70%' }}>
                         <EuiPanel paddingSize="l" style={{ height: '100%' }}>
                             <EuiText>
                                 <h3 style={{ fontWeight: 'bold', color: '#0070F3' }}>
@@ -117,7 +169,7 @@ export default function TeacherDashboard() {
                     </EuiFlexItem>
 
                     {/* Panel Lớp chủ nhiệm */}
-                    <EuiFlexItem style={{ width: '300px', height: '282px' }}>
+                    <EuiFlexItem style={{ flex: '0 0 30%', height: '300px', width: '30%' }}>
                         <EuiPanel paddingSize="l" style={{ height: '100%' }}>
                             <EuiText>
                                 <h3 style={{ fontWeight: 'bold', color: '#0070F3' }}>
@@ -130,26 +182,26 @@ export default function TeacherDashboard() {
                             {/* Hàng đầu tiên: Tên lớp, phòng học, số học sinh */}
                             <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
                                 <EuiFlexItem>
-                                    <EuiText style={{ fontWeight: 'bold', fontSize: '18px' }}>
+                                    <EuiText style={{ fontSize: '16px' }}>
                                         Tên lớp:
                                     </EuiText>
-                                    <EuiText style={{ fontWeight: 'bold', fontSize: '24px' }}>
+                                    <EuiText style={{ fontSize: '18px', fontWeight: 'bold' }}>
                                         {className}
                                     </EuiText>
                                 </EuiFlexItem>
                                 <EuiFlexItem>
-                                    <EuiText style={{ fontWeight: 'bold', fontSize: '18px' }}>
-                                        Phòng học:
+                                    <EuiText style={{ fontSize: '16px' }}>
+                                        Phòng học cố định:
                                     </EuiText>
-                                    <EuiText style={{ fontWeight: 'bold', fontSize: '24px' }}>
+                                    <EuiText style={{ fontSize: '18px', fontWeight: 'bold' }}>
                                         {room}
                                     </EuiText>
                                 </EuiFlexItem>
                                 <EuiFlexItem>
-                                    <EuiText style={{ fontWeight: 'bold', fontSize: '18px' }}>
-                                        Số học sinh:
+                                    <EuiText style={{ fontSize: '16px' }}>
+                                        Học sinh:
                                     </EuiText>
-                                    <EuiText style={{ fontWeight: 'bold', fontSize: '24px' }}>
+                                    <EuiText style={{ fontSize: '18px', fontWeight: 'bold' }}>
                                         {totalStudents}
                                     </EuiText>
                                 </EuiFlexItem>
@@ -157,26 +209,26 @@ export default function TeacherDashboard() {
 
                             {/* Mục điểm danh nằm bên phải donut */}
                             <EuiSpacer size="m" />
-                            <EuiFlexGroup justifyContent="spaceBetween" gutterSize="m">
+                            <EuiFlexGroup justifyContent="spaceBetween" gutterSize="m" style={{ width: '100%' }}>
                                 {/* Vòng tròn donut cho điểm danh */}
                                 <EuiFlexItem style={{ maxWidth: '150px', maxHeight: '150px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <Doughnut data={attendanceChartData} height={120} width={120} />
+                                    <Doughnut data={attendanceChartData} options={options} height={120} width={120} />
                                 </EuiFlexItem>
 
                                 {/* Mục điểm danh nằm trên một cột */}
                                 <EuiFlexItem style={{ width: '100%' }}>
-                                    <EuiText style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                                    <EuiText style={{ fontSize: '16px' }}>
                                         Điểm danh
                                     </EuiText>
                                     <EuiSpacer size="m" />
-                                    <EuiText style={{ fontSize: '16px' }}>
-                                        <strong>Vắng mặt:</strong> {totalAbsent}
+                                    <EuiText style={{ fontSize: '14px' }}>
+                                        {renderStatusCircle('Vắng mặt')} Vắng mặt: {totalAbsent}
                                     </EuiText>
-                                    <EuiText style={{ fontSize: '16px' }}>
-                                        <strong>Có phép:</strong> {permittedAbsence}
+                                    <EuiText style={{ fontSize: '14px' }}>
+                                        {renderStatusCircle('Có phép')} Có phép: {permittedAbsence}
                                     </EuiText>
-                                    <EuiText style={{ fontSize: '16px' }}>
-                                        <strong>Không phép:</strong> {unpermittedAbsence}
+                                    <EuiText style={{ fontSize: '14px' }}>
+                                        {renderStatusCircle('Không phép')} Không phép: {unpermittedAbsence}
                                     </EuiText>
                                 </EuiFlexItem>
                             </EuiFlexGroup>
