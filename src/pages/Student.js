@@ -62,16 +62,16 @@ export default function Student() {
             <EuiPageTemplate>
                 {/* Sidebar */}
                 {isSideBar && (
-                    <EuiPageTemplate.Sidebar paddingSize="l" minWidth="220px">
+                    <EuiPageTemplate.Sidebar paddingSize="m" minWidth="300px">
                         {/* Sidebar content */}
                     </EuiPageTemplate.Sidebar>
                 )}
 
-                {/* Header */}
+                {/* Main Header */}
                 <EuiPageTemplate.Header paddingSize="m" pageTitle={<EuiText><h2>Trang chủ</h2></EuiText>} />
 
                 {/* Thời khóa biểu và chọn học kỳ, năm học */}
-                <EuiPageTemplate.Section color="plain">
+                <EuiPageTemplate.Section color="plain" style={{ flex: 1, height: '100vh' }}>
                     <EuiFlexGroup justifyContent="spaceBetween" alignItems="center" gutterSize="l">
                         <EuiFlexItem grow={false}>
                             <EuiText>
@@ -114,10 +114,10 @@ export default function Student() {
                 </EuiPageTemplate.Section>
 
                 {/* FlexGroup chứa 2 panel Sự kiện và Kết quả học tập */}
-                <EuiPageTemplate.Section color="plain">
+                <EuiPageTemplate.Section color="plain" style={{ flex: 1 }}>
                     <EuiFlexGroup gutterSize="l">
                         {/* Panel Sự kiện */}
-                        <EuiFlexItem style={{ maxWidth: '965px', width: '100%' }}>
+                        <EuiFlexItem style={{ maxWidth: '100%', width: '100%' }}>
                             <EuiPanel paddingSize="l">
                                 <EuiText>
                                     <h3 style={{ fontWeight: 'bold', color: '#0070F3' }}>
