@@ -50,10 +50,9 @@ export default function SideBarstudent() {
         >
           <EuiListGroup flush gutterSize="none">
             <EuiListGroupItem label={<><EuiIcon type="calendar" size="m" /> <Link to="/schedule" style={{ color: 'black' }}>Thời khóa biểu</Link></>} />
-            <EuiListGroupItem label={<><EuiIcon type="users" size="m" /> <Link to="/my-classes" style={{ color: 'black' }}>Lớp học của tôi</Link></>} />
             <EuiListGroupItem label={<><EuiIcon type="reporter" size="m" /> <Link to="/contact-book" style={{ color: 'black' }}>Sổ liên lạc điện tử</Link></>} />
-            <EuiListGroupItem label={<><EuiIcon type="training" size="m" /> <Link to="/student-records" style={{ color: 'black' }}>Học bạ học sinh</Link></>} />
             <EuiListGroupItem label={<><EuiIcon type="starEmpty" size="m" /> <Link to="/academic-results" style={{ color: 'black' }}>Kết quả học tập</Link></>} />
+            <EuiListGroupItem label={<><EuiIcon type="training" size="m" /> <Link to="/student-records" style={{ color: 'black' }}>Học bạ học sinh</Link></>} />
           </EuiListGroup>
         </EuiCollapsibleNavGroup>
 

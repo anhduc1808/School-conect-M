@@ -32,19 +32,14 @@ export default function SideBarteacher() {
         <EuiListGroupItem label={<><EuiIcon type="article" size="m" /> <Link to="/news" style={{ color: 'black' }}>Thông báo</Link></>} />
       </EuiListGroup>
 
-      {/* Quản lý học tập */}
-      <EuiCollapsibleNavGroup 
-        isCollapsible 
-        initialIsOpen={true} 
-        title={<EuiText style={{ fontWeight: 'bold', color: 'black' }}>Học tập</EuiText>} 
-        style={{ borderBlockStart: 'none' }}
-      >
-        <EuiListGroup flush gutterSize="none">
-          <EuiListGroupItem label={<><EuiIcon type="calendar" size="m" /> <Link to="/schedule" style={{ color: 'black' }}>Thời khóa biểu</Link></>} />
-          <EuiListGroupItem label={<><EuiIcon type="users" size="m" /> <Link to="/my-classes" style={{ color: 'black' }}>Lớp giảng dạy</Link></>} />
-          <EuiListGroupItem label={<><EuiIcon type="training" size="m" /> <Link to="/contact-book" style={{ color: 'black' }}>Lớp chủ nhiệm</Link></>} />
-        </EuiListGroup>
-      </EuiCollapsibleNavGroup>
+       {/* Quản lý học tập */}
+       <EuiListGroup gutterSize="none" style={{ padding: '4px 8px' }}>
+        <EuiListGroupItem label={<Link to="/activities" style={{ color: 'black' }}>Học tập</Link>} style={{ fontWeight: 'bold' }} />
+        <EuiListGroupItem label={<><EuiIcon type="calendar" size="m" /> <Link to="/notifications" style={{ color: 'black' }}>Thời khoá biểu</Link></>} /> 
+        <EuiListGroupItem label={<><EuiIcon type="users" size="m" /> <Link to="/events" style={{ color: 'black' }}>Lớp giảng dạy</Link></>} />     
+        <EuiListGroupItem label={<><EuiIcon type="training" size="m" /> <Link to="/news" style={{ color: 'black' }}>Lớp chủ nhiệm</Link></>} />
+      </EuiListGroup>
+
 
       <EuiListGroup gutterSize="none" style={{ padding: '4px 8px' }}>
         <EuiListGroupItem label={<Link to="/activities" style={{ color: 'black' }}>Hoạt động</Link>} style={{ fontWeight: 'bold' }} />
