@@ -6,7 +6,10 @@ import ResetPassword from './component/ResetPassword';
 import Student from './pages/Student';
 import Teacher from './pages/Teacher';
 import Hometeacher from './pages/Hometeacher';
-import EventDetail from "./pages/EventDetail";
+import EventDetailstudent from "./pages/EventDetailstudent";
+import EventDetailteacher from "./pages/EventDetailteacher";
+
+
 
 
 const App = () => (
@@ -17,12 +20,12 @@ const App = () => (
       < Route path="/reset-password" element={<ResetPassword />} />
       <Route element={<Homestudent/>}>        
           <Route path="/student" element={<Student/>}/>
-          <Route path="/eventDetail" element={<EventDetail/>}/>
+          <Route path="/eventDetailstudent" element={<EventDetailstudent/>}/>
 
         </Route>
       <Route element={<Hometeacher/>}>
          <Route path="/teacher" element={<Teacher />} />
-
+         <Route path="/eventDetailteacher" element={<EventDetailteacher/>}/>
         </Route>
       </Routes>
   </Router>

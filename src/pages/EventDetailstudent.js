@@ -18,7 +18,7 @@ import {
   EuiButtonIcon
 } from '@elastic/eui';
 
-export default function EventDetail() {
+export default function EventDetailstudent() {
   const navigate = useNavigate(); // Create a navigate function
   const [isModalVisible, setIsModalVisible] = useState(false); // State to manage modal visibility
   const [isConfirmed, setIsConfirmed] = useState(false); // State to track if event is confirmed
