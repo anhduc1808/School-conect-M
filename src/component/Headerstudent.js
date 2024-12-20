@@ -102,8 +102,12 @@ export default function Headerstudent({ clickSideBarstudent }) {
             <EuiHeaderBreadcrumbs
               max={2}
               breadcrumbs={[
-                { text: 'Trang chủ', href: '#' },
-                { text: 'Thông báo', href: '#' },
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Web logs"},
               ]}
               style={{ color: '#333' }} /* Đổi màu của breadcrumb */
             />

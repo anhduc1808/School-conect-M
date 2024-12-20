@@ -6,6 +6,8 @@ import ResetPassword from './component/ResetPassword';
 import Student from './pages/Student';
 import Teacher from './pages/Teacher';
 import Hometeacher from './pages/Hometeacher';
+import EventDetail from "./pages/EventDetail";
+
 
 const App = () => (
   <Router>
@@ -15,9 +17,12 @@ const App = () => (
       < Route path="/reset-password" element={<ResetPassword />} />
       <Route element={<Homestudent/>}>        
           <Route path="/student" element={<Student/>}/>
+          <Route path="/eventDetail" element={<EventDetail/>}/>
+
         </Route>
       <Route element={<Hometeacher/>}>
          <Route path="/teacher" element={<Teacher />} />
+
         </Route>
       </Routes>
   </Router>

@@ -105,8 +105,12 @@ export default function Headerteacher({ clickSideBarteacher }) {
             <EuiHeaderBreadcrumbs
               max={2}
               breadcrumbs={[
-                { text: 'Trang chủ', href: '#' },
-                { text: 'Thông báo', href: '#' },
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Analytics",href:"#"},
+                {text:"Web logs"},
               ]}
             />
           </EuiHeaderSection>
