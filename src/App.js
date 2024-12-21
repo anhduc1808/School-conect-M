@@ -8,7 +8,7 @@ import Teacher from './pages/Teacher';
 import Hometeacher from './pages/Hometeacher';
 import EventDetailstudent from "./pages/EventDetailstudent";
 import EventDetailteacher from "./pages/EventDetailteacher";
-
+import TeachingClasses from './pages/TeachingClasses';
 
 
 
@@ -26,6 +26,7 @@ const App = () => (
       <Route element={<Hometeacher/>}>
          <Route path="/teacher" element={<Teacher />} />
          <Route path="/eventDetailteacher" element={<EventDetailteacher/>}/>
+        <Route path="/teachingClasses" element={<TeachingClasses />}/>
         </Route>
       </Routes>
   </Router>
