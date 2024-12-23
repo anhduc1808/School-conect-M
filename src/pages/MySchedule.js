@@ -21,10 +21,20 @@ const MySchedule = () => {
   const scheduleData = [
     ['Chào cờ', 'Toán', 'Ngữ Văn', 'Vật Lý', 'Tiếng Anh'],
     ['Online', 'Online', 'Online', 'Online', '12A3'],
-    ['Online', 'Online', 'Online', 'Online', '12A3'],
-    ['Online', 'Online', 'Online', 'Online', '12A3'],
-    ['Online', 'Online', 'Online', 'Online', '12A3'],
+    ['Offline', 'Offline', 'Online', 'Online', '12A3'],
+    ['Online', 'Offline', 'Online', 'Online', '12A3'],
+    ['Online', 'Online', 'Offline', 'Online', '12A3'],
   ];
+
+  const getStatusColor = (status) => {
+    if (status === 'Online') {
+      return '#007E77'; // Xanh lá
+    }
+    if (status === 'Offline') {
+      return '#c80000'; // Đỏ
+    }
+    return '#000000'; // Mặc định là đen
+  };
 
   return (
     <section
@@ -93,7 +103,7 @@ const MySchedule = () => {
                 width: '150px',
                 appearance: 'none',
                 border: 'none',
-                color: '#336699',
+                color: '#005ec4',
                 padding: '5px',
                 background: 'transparent',
                 fontSize: '14px',
@@ -111,7 +121,7 @@ const MySchedule = () => {
                 width: '180px',
                 appearance: 'none',
                 border: 'none',
-                color: '#336699',
+                color: '#005ec4',
                 padding: '5px',
                 background: 'transparent',
                 fontSize: '14px',
@@ -135,9 +145,30 @@ const MySchedule = () => {
             {scheduleData.map((row, rowIndex) => (
               <EuiTableRow key={rowIndex}>
                 <EuiTableRowCell>{rowIndex + 1}</EuiTableRowCell>
-                {row.map((cell, cellIndex) => (
-                  <EuiTableRowCell key={cellIndex}>{cell}</EuiTableRowCell>
-                ))}
+                {row.map((cell, cellIndex) => {
+                  const isOnlineOffline = cell === 'Online' || cell === 'Offline';
+                  return (
+                    <EuiTableRowCell key={cellIndex}>
+                      {isOnlineOffline ? (
+                        <>
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              width: '10px',
+                              height: '10px',
+                              borderRadius: '50%',
+                              backgroundColor: getStatusColor(cell),
+                              marginRight: '5px',
+                            }}
+                          ></span>
+                          {cell}
+                        </>
+                      ) : (
+                        cell
+                      )}
+                    </EuiTableRowCell>
+                  );
+                })}
               </EuiTableRow>
             ))}
           </EuiTableBody>
