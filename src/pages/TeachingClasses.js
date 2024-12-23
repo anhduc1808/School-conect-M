@@ -50,7 +50,7 @@ const TeachingClasses = () => {
             style={{
               padding: '8px 12px',
               borderRadius: '4px',
-              backgroundColor: '#336699', // Lighter blue color
+              backgroundColor: '#0070cc', // Lighter blue color
               color: 'white', // White text color
               border: 'none', // Optional: Remove border for a clean look
             }}

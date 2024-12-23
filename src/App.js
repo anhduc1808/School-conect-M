@@ -9,7 +9,7 @@ import Hometeacher from './pages/Hometeacher';
 import EventDetailstudent from "./pages/EventDetailstudent";
 import EventDetailteacher from "./pages/EventDetailteacher";
 import TeachingClasses from './pages/TeachingClasses';
-
+import MySchedule from './pages/MySchedule';
 
 
 const App = () => (
@@ -21,7 +21,7 @@ const App = () => (
       <Route element={<Homestudent/>}>        
           <Route path="/student" element={<Student/>}/>
           <Route path="/eventDetailstudent" element={<EventDetailstudent/>}/>
-
+          <Route path="/myschedule" element={<MySchedule/>}/>
         </Route>
       <Route element={<Hometeacher/>}>
          <Route path="/teacher" element={<Teacher />} />
