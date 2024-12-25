@@ -10,7 +10,8 @@ import EventDetailstudent from "./pages/EventDetailstudent";
 import EventDetailteacher from "./pages/EventDetailteacher";
 import TeachingClasses from './pages/TeachingClasses';
 import MySchedule from './pages/MySchedule';
-
+import ScheduleSchool from './pages/ScheduleSchool';
+import FeeTableEUI from './pages/FeeTableEUI';
 
 const App = () => (
   <Router>
@@ -22,11 +23,13 @@ const App = () => (
           <Route path="/student" element={<Student/>}/>
           <Route path="/eventDetailstudent" element={<EventDetailstudent/>}/>
           <Route path="/myschedule" element={<MySchedule/>}/>
+          <Route path="/feetableeui" element={<FeeTableEUI/>}/>
         </Route>
       <Route element={<Hometeacher/>}>
          <Route path="/teacher" element={<Teacher />} />
          <Route path="/eventDetailteacher" element={<EventDetailteacher/>}/>
         <Route path="/teachingClasses" element={<TeachingClasses />}/>
+        <Route path="/scheduleschool" element={<ScheduleSchool />}/>
         </Route>
       </Routes>
   </Router>

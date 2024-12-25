@@ -44,7 +44,7 @@ const MySchedule = () => {
         padding: '0',
         width: '100%',
         maxWidth: 'none', // Loại bỏ giới hạn chiều rộng
-        boxSizing: 'border-box',
+        boxSizing: 'border-box', 
       }}
     >
       {/* Header Section */}
